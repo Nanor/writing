@@ -55,7 +55,7 @@ h1 {
 .editor-container {
   margin: 20px auto 20px auto;
   border-radius: 10px;
-  max-width: 600px;
+  max-width: min(90dvw, 1200px);
   color: #000;
   position: relative;
   line-height: 20px;
