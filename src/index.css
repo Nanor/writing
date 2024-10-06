@@ -82,12 +82,12 @@ h1 {
   position: relative;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  transition: background-color 1s;
+  transition: background-color 0.5s;
 }
 
 .editor-inner.animating {
   background-color: rgb(255, 126, 126);
-  transition: background-color 10s 10s;
+  transition: background-color 10s;
 }
 
 .editor-input {
