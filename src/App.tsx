@@ -14,9 +14,7 @@ import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 
 import Theme from "./Theme";
 import ToolbarPlugin from "./plugins/ToolbarPlugin";
-import SavePlugin from "./plugins/SavePlugin";
-import { useState } from "react";
-import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
+import CustomPlugin from "./plugins/CustomPlugin";
 
 const editorConfig = {
   namespace: "writing",
@@ -28,28 +26,18 @@ const editorConfig = {
 };
 
 export default function App() {
-  const [animating, setAnimating] = useState(false);
-
   return (
     <LexicalComposer initialConfig={editorConfig}>
       <div className="editor-container">
         <ToolbarPlugin />
-        <div className={`editor-inner ${animating ? "animating" : ""}`}>
+        <div className="editor-inner">
           <RichTextPlugin
             contentEditable={<ContentEditable className="editor-input" />}
             ErrorBoundary={LexicalErrorBoundary}
           />
           <HistoryPlugin />
           <AutoFocusPlugin />
-          <SavePlugin />
-          <OnChangePlugin
-            onChange={() => {
-              setAnimating(false);
-              setTimeout(() => {
-                setAnimating(true);
-              }, 1000);
-            }}
-          />
+          <CustomPlugin />
         </div>
       </div>
     </LexicalComposer>
