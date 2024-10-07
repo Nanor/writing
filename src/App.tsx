@@ -14,7 +14,9 @@ import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 
 import Theme from "./Theme";
 import ToolbarPlugin from "./plugins/ToolbarPlugin";
-import CustomPlugin from "./plugins/CustomPlugin";
+import SavePlugin from "./plugins/SavePlugin";
+import WordCountPlugin from "./plugins/WordCountPlugin";
+import WarningPlugin from "./plugins/WarningPlugin";
 
 const editorConfig = {
   namespace: "writing",
@@ -37,7 +39,9 @@ export default function App() {
           />
           <HistoryPlugin />
           <AutoFocusPlugin />
-          <CustomPlugin />
+          <SavePlugin />
+          <WordCountPlugin />
+          <WarningPlugin />
         </div>
       </div>
     </LexicalComposer>

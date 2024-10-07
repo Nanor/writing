@@ -1,23 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { $getRoot, $insertNodes } from "lexical";
 import { $generateHtmlFromNodes, $generateNodesFromDOM } from "@lexical/html";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 
 const SavePlugin = () => {
   const [editor] = useLexicalComposerContext();
-  const [wordCount, setWordCount] = useState(0);
-  const [currentTime, setCurrentTime] = useState(new Date().getTime());
-  const [lastChange, setLastChange] = useState(new Date().getTime());
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(new Date().getTime());
-    }, 100);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
 
   useEffect(() => {
     editor.update(() => {
@@ -34,11 +21,6 @@ const SavePlugin = () => {
       }
     });
 
-    editor.registerTextContentListener((text) => {
-      setWordCount((text.match(/\S+/g) || []).length);
-      setLastChange(new Date().getTime());
-    });
-
     editor.registerUpdateListener(({ editorState }) => {
       editorState.read(() => {
         const html = $generateHtmlFromNodes(editor);
@@ -47,14 +29,7 @@ const SavePlugin = () => {
     });
   }, [editor]);
 
-  return (
-    <>
-      {currentTime - lastChange > 1000 && <div className="warning" />}
-      <div className="word-count">
-        {wordCount} word{wordCount === 1 ? "" : "s"}
-      </div>
-    </>
-  );
+  return null;
 };
 
 export default SavePlugin;
